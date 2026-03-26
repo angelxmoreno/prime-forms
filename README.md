@@ -1,58 +1,69 @@
-# CakePHP Application Skeleton
+# Prime Forms
 
-![Build Status](https://github.com/cakephp/app/actions/workflows/ci.yml/badge.svg?branch=5.x)
-[![Total Downloads](https://img.shields.io/packagist/dt/cakephp/app.svg?style=flat-square)](https://packagist.org/packages/cakephp/app)
-[![PHPStan](https://img.shields.io/badge/PHPStan-level%208-brightgreen.svg?style=flat-square)](https://github.com/phpstan/phpstan)
+Prime Forms is a CakePHP 5 form and survey platform. Forms are defined from markdown schemas and rendered through generated CakePHP form classes and templates. Submission data is stored in a shared `submissions` table with JSON payloads, while runtime form registration lives in the `forms` table.
 
-A skeleton for creating applications with [CakePHP](https://cakephp.org) 5.x.
+The project is still in the platform-foundation stage. The current codebase is a freshly baked CakePHP app plus planning documents.
 
-The framework source code can be found here: [cakephp/cakephp](https://github.com/cakephp/cakephp).
+## Current Architecture Direction
 
-## Installation
+- Appwrite is the only identity provider
+- Local CakePHP users are projections of authenticated Appwrite users
+- Authentication and authorization are split into reusable plugins
+- Standard generated forms extend a shared `BaseSubmissionForm`
+- Standard form submissions use shared storage instead of per-form tables
 
-1. Download [Composer](https://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
-2. Run `php composer.phar create-project --prefer-dist cakephp/app [app_name]`.
+Planned local plugins:
+- `Appwrite`
+- `AppwriteUsers`
+- `AppwriteAuthentication`
+- `UserAccess`
 
-If Composer is installed globally, run
+## Documentation
+
+- [project-docs/overview.md](project-docs/overview.md)
+- [project-docs/auth-architecture.md](project-docs/auth-architecture.md)
+- [project-docs/roadmap.md](project-docs/roadmap.md)
+- [AGENTS.md](AGENTS.md)
+
+## Local Development
+
+Install dependencies:
 
 ```bash
-composer create-project --prefer-dist cakephp/app
+composer install
 ```
 
-In case you want to use a custom app dir name (e.g. `/myapp/`):
-
-```bash
-composer create-project --prefer-dist cakephp/app myapp
-```
-
-You can now either use your machine's webserver to view the default home page, or start
-up the built-in webserver with:
+Run the local server:
 
 ```bash
 bin/cake server -p 8765
 ```
 
-Then visit `http://localhost:8765` to see the welcome page.
+Run tests:
 
-## Demo app
+```bash
+composer test
+```
 
-Check out the [5.x-demo branch](https://github.com/cakephp/app/tree/5.x-demo), which contains demo migrations and a seeder.
-See the [README](https://github.com/cakephp/app/blob/5.x-demo/README.md) on how to get it running.
+Run coding standards:
 
-## Update
+```bash
+composer cs-check
+```
 
-Since this skeleton is a starting point for your application and various files
-would have been modified as per your needs, there isn't a way to provide
-automated upgrades, so you have to do any updates manually.
+Auto-fix coding standards where possible:
 
-## Configuration
+```bash
+composer cs-fix
+```
 
-Read and edit the environment specific `config/app_local.php` and set up the
-`'Datasources'` and any other configuration relevant for your application.
-Other environment agnostic settings can be changed in `config/app.php`.
+## Status
 
-## Layout
+Not implemented yet:
+- Appwrite integration
+- reusable auth/authz plugins
+- shared platform schema
+- generated form runtime
+- admin panel and CRM features
 
-The app skeleton uses [Milligram](https://milligram.io/) (v1.3) minimalist CSS
-framework by default. You can, however, replace it with any other library or
-custom styles.
+The next work should follow the phased plan in `project-docs/roadmap.md`.
