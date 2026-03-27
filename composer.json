@@ -15,8 +15,12 @@
         "cakephp/bake": "^3.0.0",
         "cakephp/cakephp-codesniffer": "^5.3",
         "cakephp/debug_kit": "^5.2.0",
+        "captainhook/captainhook": "^5.29",
+        "ergebnis/composer-normalize": "^2.50",
         "josegonzalez/dotenv": "^4.0",
-        "phpunit/phpunit": "^11.5.3 || ^12.1.3"
+        "phpunit/phpunit": "^11.5.3 || ^12.1.3",
+        "ramsey/conventional-commits": "^1.7",
+        "systemsdk/phpcpd": "^8.3"
     },
     "suggest": {
         "cakephp/repl": "Console tools for a REPL interface for CakePHP applications.",
@@ -38,20 +42,37 @@
     "config": {
         "allow-plugins": {
             "cakephp/plugin-installer": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "ergebnis/composer-normalize": true
         },
         "platform-check": true,
         "sort-packages": true
     },
     "scripts": {
-        "post-install-cmd": "App\\Console\\Installer::postInstall",
-        "post-create-project-cmd": "App\\Console\\Installer::postInstall",
+        "post-install-cmd": [
+            "App\\Console\\Installer::postInstall",
+            "@captainhook-install"
+        ],
+        "post-update-cmd": [
+            "@captainhook-install"
+        ],
+        "post-create-project-cmd": [
+            "App\\Console\\Installer::postInstall",
+            "@captainhook-install"
+        ],
+        "captainhook-install": [
+            "@php -r \"if (!file_exists('vendor/bin/captainhook') && !file_exists('vendor/bin/captainhook.bat')) { exit(0); } \\$command = PHP_OS_FAMILY === 'Windows' ? 'vendor\\\\bin\\\\captainhook.bat install --force --only-enabled' : 'vendor/bin/captainhook install --force --only-enabled'; passthru(\\$command, \\$exitCode); exit(\\$exitCode);\""
+        ],
         "check": [
             "@test",
-            "@cs-check"
+            "@cs-check",
+            "@dup-check"
         ],
+        "composer-normalize": "composer normalize",
+        "composer-normalize-check": "composer normalize --dry-run",
         "cs-check": "phpcs --colors -p",
         "cs-fix": "phpcbf --colors -p",
+        "dup-check": "phpcpd --fuzzy src tests",
         "test": "phpunit --colors=always"
     }
 }
