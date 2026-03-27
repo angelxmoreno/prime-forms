@@ -11,7 +11,7 @@ Prime Forms is a CakePHP 5 survey and form collection platform. Forms are not ha
 
 ## Tech Stack
 
-- **Framework:** CakePHP 5.x (PHP 8.2+)
+- **Framework:** CakePHP 5.x (PHP 8.4+)
 - **Database:** MySQL 8
 - **Frontend:** Server-rendered CakePHP templates
 - **Styling:** Tailwind CSS with per-form theming via CSS variables
