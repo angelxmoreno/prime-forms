@@ -72,6 +72,14 @@ jobs:
     - name: Run PHP CodeSniffer
       run: vendor/bin/phpcs --report=checkstyle | cs2pr
 
+    - name: Run composer normalize check
+      if: always()
+      run: composer composer-normalize-check
+
+    - name: Run duplication check
+      if: always()
+      run: composer dup-check
+
     - name: Run phpstan
       if: always()
       run: phpstan
