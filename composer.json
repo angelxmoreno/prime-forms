@@ -60,7 +60,9 @@
             "App\\Console\\Installer::postInstall",
             "@captainhook-install"
         ],
-        "captainhook-install": "vendor/bin/captainhook install --force --only-enabled",
+        "captainhook-install": [
+            "@php -r \"if (!file_exists('vendor/bin/captainhook') && !file_exists('vendor/bin/captainhook.bat')) { exit(0); } $command = PHP_OS_FAMILY === 'Windows' ? 'vendor\\\\bin\\\\captainhook.bat install --force --only-enabled' : 'vendor/bin/captainhook install --force --only-enabled'; passthru($command, $exitCode); exit($exitCode);\""
+        ],
         "check": [
             "@test",
             "@cs-check",
