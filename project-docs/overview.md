@@ -121,7 +121,7 @@ If a specific form later needs normalized relational storage, that can be added 
 
 ## Project Directory Structure
 
-```
+```text
 prime-forms/
 ├── AGENT_PROMPT.md                         ← AI agent system prompt
 ├── schemas/
@@ -232,7 +232,7 @@ prime-forms/
 
 ## CRM: Contacts
 
-A lightweight contact manager built into Prime Forms. Super admin only.
+A lightweight contact manager built into Prime Forms. Super admin only. This CRM work is planned for Phase 2 and is not implemented yet.
 
 ### Contact Record
 ```

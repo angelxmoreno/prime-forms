@@ -22,6 +22,7 @@ Planned local plugins:
 
 - [project-docs/overview.md](project-docs/overview.md)
 - [project-docs/auth-architecture.md](project-docs/auth-architecture.md)
+- [project-docs/app-schema.md](project-docs/app-schema.md)
 - [project-docs/roadmap.md](project-docs/roadmap.md)
 - [AGENTS.md](AGENTS.md)
 
