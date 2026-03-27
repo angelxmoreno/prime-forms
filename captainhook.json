@@ -1,0 +1,24 @@
+{
+    "commit-msg": {
+        "enabled": true,
+        "actions": [
+            {
+                "action": "\\Ramsey\\CaptainHook\\ValidateConventionalCommit"
+            }
+        ]
+    },
+    "pre-commit": {
+        "enabled": true,
+        "actions": [
+            {
+                "action": "composer composer-normalize-check"
+            },
+            {
+                "action": "composer cs-check"
+            },
+            {
+                "action": "composer dup-check"
+            }
+        ]
+    }
+}
