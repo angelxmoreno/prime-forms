@@ -61,7 +61,7 @@
             "@captainhook-install"
         ],
         "captainhook-install": [
-            "@php -r \"if (!file_exists('vendor/bin/captainhook') && !file_exists('vendor/bin/captainhook.bat')) { exit(0); } $command = PHP_OS_FAMILY === 'Windows' ? 'vendor\\\\bin\\\\captainhook.bat install --force --only-enabled' : 'vendor/bin/captainhook install --force --only-enabled'; passthru($command, $exitCode); exit($exitCode);\""
+            "@php -r \"if (!file_exists('vendor/bin/captainhook') && !file_exists('vendor/bin/captainhook.bat')) { exit(0); } \\$command = PHP_OS_FAMILY === 'Windows' ? 'vendor\\\\bin\\\\captainhook.bat install --force --only-enabled' : 'vendor/bin/captainhook install --force --only-enabled'; passthru(\\$command, \\$exitCode); exit(\\$exitCode);\""
         ],
         "check": [
             "@test",
