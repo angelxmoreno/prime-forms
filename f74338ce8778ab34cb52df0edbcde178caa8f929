@@ -1,0 +1,27 @@
+AGENTS.md
+  b4c5f4228588f1e5 4
+README.md
+  b4c5f4228588f1e5 25
+project-docs/overview.md
+  b4c5f4228588f1e5 124,235
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.19",
+  "base_commit_sha": "f74338ce8778ab34cb52df0edbcde178caa8f929",
+  "prompts": {
+    "b4c5f4228588f1e5": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d2af9-0efe-7610-9346-112fb5e1d3d7",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Angel S. Moreno <angelxmoreno@gmail.com>",
+      "messages": [],
+      "total_additions": 4,
+      "total_deletions": 3,
+      "accepted_lines": 4,
+      "overriden_lines": 0
+    }
+  }
+}
