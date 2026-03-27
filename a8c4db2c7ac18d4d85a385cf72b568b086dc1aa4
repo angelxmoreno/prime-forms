@@ -1,0 +1,27 @@
+project-docs/overview.md
+  b4c5f4228588f1e5 14
+.github/workflows/ci.yml
+  b4c5f4228588f1e5 24,64
+composer.json
+  b4c5f4228588f1e5 8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.19",
+  "base_commit_sha": "a8c4db2c7ac18d4d85a385cf72b568b086dc1aa4",
+  "prompts": {
+    "b4c5f4228588f1e5": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d2af9-0efe-7610-9346-112fb5e1d3d7",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Angel S. Moreno <angelxmoreno@gmail.com>",
+      "messages": [],
+      "total_additions": 4,
+      "total_deletions": 6,
+      "accepted_lines": 4,
+      "overriden_lines": 0
+    }
+  }
+}
