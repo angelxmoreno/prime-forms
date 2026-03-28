@@ -1,0 +1,29 @@
+config/Migrations/20260328013837_Initial.php
+  b4c5f4228588f1e5 113,178,185,256
+tests/TestCase/Model/Table/UsersTableTest.php
+  b4c5f4228588f1e5 99,108
+tests/TestCase/Model/Table/FormsTableTest.php
+  b4c5f4228588f1e5 95,101,105,111
+src/Model/Table/FormsTable.php
+  b4c5f4228588f1e5 65-69
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.20",
+  "base_commit_sha": "3cb4576e0511afc0db338ea2863d9ea3ccfd9a1b",
+  "prompts": {
+    "b4c5f4228588f1e5": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d2af9-0efe-7610-9346-112fb5e1d3d7",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Angel S. Moreno <angelxmoreno@gmail.com>",
+      "messages": [],
+      "total_additions": 34,
+      "total_deletions": 20,
+      "accepted_lines": 27,
+      "overriden_lines": 0
+    }
+  }
+}
