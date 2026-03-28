@@ -88,19 +88,16 @@ class Initial extends BaseMigration
                 'signed' => true,
             ])
             ->addIndex(
-                $this->index('type')
-                    ->setName('type_idx')
+                ['type'],
+                ['name' => 'type_idx']
             )
             ->addIndex(
-                $this->index('created')
-                    ->setName('created_idx')
+                ['created'],
+                ['name' => 'created_idx']
             )
             ->addIndex(
-                $this->index([
-                        'type',
-                        'created',
-                    ])
-                    ->setName('type_created_idx')
+                ['type', 'created'],
+                ['name' => 'type_created_idx']
             )
             ->create();
 
@@ -154,18 +151,22 @@ class Initial extends BaseMigration
                 'null' => false,
             ])
             ->addIndex(
-                $this->index('slug')
-                    ->setName('forms_slug_unique')
-                    ->setType('unique')
+                ['slug'],
+                [
+                    'name' => 'forms_slug_unique',
+                    'unique' => true,
+                ]
             )
             ->addIndex(
-                $this->index('form_class')
-                    ->setName('forms_form_class_unique')
-                    ->setType('unique')
+                ['form_class'],
+                [
+                    'name' => 'forms_form_class_unique',
+                    'unique' => true,
+                ]
             )
             ->addIndex(
-                $this->index('is_active')
-                    ->setName('forms_is_active_idx')
+                ['is_active'],
+                ['name' => 'forms_is_active_idx']
             )
             ->create();
 
@@ -235,15 +236,12 @@ class Initial extends BaseMigration
                 'null' => false,
             ])
             ->addIndex(
-                $this->index('reviewed')
-                    ->setName('submissions_reviewed_idx')
+                ['reviewed'],
+                ['name' => 'submissions_reviewed_idx']
             )
             ->addIndex(
-                $this->index([
-                        'form_id',
-                        'created',
-                    ])
-                    ->setName('submissions_form_created_idx')
+                ['form_id', 'created'],
+                ['name' => 'submissions_form_created_idx']
             )
             ->create();
 
@@ -292,30 +290,36 @@ class Initial extends BaseMigration
                 'null' => false,
             ])
             ->addIndex(
-                $this->index('appwrite_user_id')
-                    ->setName('users_appwrite_user_id_unique')
-                    ->setType('unique')
+                ['appwrite_user_id'],
+                [
+                    'name' => 'users_appwrite_user_id_unique',
+                    'unique' => true,
+                ]
             )
             ->addIndex(
-                $this->index('email')
-                    ->setName('users_email_unique')
-                    ->setType('unique')
+                ['email'],
+                [
+                    'name' => 'users_email_unique',
+                    'unique' => true,
+                ]
             )
             ->addIndex(
-                $this->index('last_login_at')
-                    ->setName('users_last_login_at_idx')
+                ['last_login_at'],
+                ['name' => 'users_last_login_at_idx']
             )
             ->create();
 
         if ($shouldCreateSubmissionForeignKey) {
             $this->table('submissions')
                 ->addForeignKey(
-                    $this->foreignKey('form_id')
-                        ->setReferencedTable('forms')
-                        ->setReferencedColumns('id')
-                        ->setOnDelete('RESTRICT')
-                        ->setOnUpdate('CASCADE')
-                        ->setName('submissions_form_id_fk')
+                    'form_id',
+                    'forms',
+                    'id',
+                    [
+                        'constraint' => 'submissions_form_id_fk',
+                        'delete' => 'RESTRICT',
+                        'update' => 'CASCADE',
+                    ]
                 )
                 ->update();
         }
