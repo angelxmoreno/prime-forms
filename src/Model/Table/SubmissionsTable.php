@@ -59,6 +59,7 @@ class SubmissionsTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
+            ->requirePresence('form_id', 'create')
             ->notEmptyString('form_id');
 
         $validator
@@ -88,8 +89,7 @@ class SubmissionsTable extends Table
             ->allowEmptyString('source_url');
 
         $validator
-            ->boolean('reviewed')
-            ->notEmptyString('reviewed');
+            ->boolean('reviewed');
 
         $validator
             ->scalar('review_notes')

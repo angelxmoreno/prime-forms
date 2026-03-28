@@ -59,7 +59,28 @@ class UsersTableTest extends TestCase
      */
     public function testValidationDefault(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $missingRequired = $this->Users->newEntity([]);
+        $errors = $missingRequired->getErrors();
+
+        $this->assertArrayHasKey('appwrite_user_id', $errors);
+        $this->assertArrayHasKey('email', $errors);
+        $this->assertArrayHasKey('display_name', $errors);
+
+        $invalidEmail = $this->Users->newEntity([
+            'appwrite_user_id' => 'user_01HQ5Y8V4QWERTY123456789ZZ',
+            'email' => 'not-an-email',
+            'display_name' => 'Invalid User',
+            'email_verified' => false,
+        ]);
+        $this->assertNotEmpty($invalidEmail->getErrors()['email'] ?? []);
+
+        $tooLongEmail = $this->Users->newEntity([
+            'appwrite_user_id' => 'user_01HQ5Y8V4QWERTY123456789XY',
+            'email' => str_repeat('a', 244) . '@example.com',
+            'display_name' => 'Long Email User',
+            'email_verified' => false,
+        ]);
+        $this->assertNotEmpty($tooLongEmail->getErrors()['email'] ?? []);
     }
 
     /**
@@ -70,6 +91,22 @@ class UsersTableTest extends TestCase
      */
     public function testBuildRules(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $duplicateAppwriteId = $this->Users->newEntity([
+            'appwrite_user_id' => 'user_01HQ5Y8V4QWERTY123456789AB',
+            'email' => 'unique@example.com',
+            'display_name' => 'Duplicate Appwrite User',
+            'email_verified' => false,
+        ]);
+        $this->assertFalse($this->Users->save($duplicateAppwriteId));
+        $this->assertNotEmpty($duplicateAppwriteId->getErrors()['appwrite_user_id'] ?? []);
+
+        $duplicateEmail = $this->Users->newEntity([
+            'appwrite_user_id' => 'user_01HQ5Y8V4QWERTY123456789CD',
+            'email' => 'test.user+1@example.com',
+            'display_name' => 'Duplicate Email User',
+            'email_verified' => false,
+        ]);
+        $this->assertFalse($this->Users->save($duplicateEmail));
+        $this->assertNotEmpty($duplicateEmail->getErrors()['email'] ?? []);
     }
 }

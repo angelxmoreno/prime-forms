@@ -37,15 +37,5 @@ class Submission extends Entity
     protected array $_accessible = [
         'form_id' => true,
         'payload' => true,
-        'ip_address' => true,
-        'user_agent' => true,
-        'referrer_url' => true,
-        'accept_language' => true,
-        'source_url' => true,
-        'reviewed' => true,
-        'review_notes' => true,
-        'created' => true,
-        'modified' => true,
-        'form' => true,
     ];
 }

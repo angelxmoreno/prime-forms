@@ -32,9 +32,15 @@ class User extends Entity
         'appwrite_user_id' => true,
         'email' => true,
         'display_name' => true,
-        'email_verified' => true,
         'last_login_at' => true,
-        'created' => true,
-        'modified' => true,
+    ];
+
+    /**
+     * Fields that are excluded from JSON versions of the entity.
+     *
+     * @var list<string>
+     */
+    protected array $_hidden = [
+        'email',
     ];
 }

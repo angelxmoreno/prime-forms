@@ -61,6 +61,7 @@ class UsersTable extends Table
 
         $validator
             ->email('email')
+            ->maxLength('email', 255)
             ->requirePresence('email', 'create')
             ->notEmptyString('email')
             ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
@@ -72,8 +73,7 @@ class UsersTable extends Table
             ->notEmptyString('display_name');
 
         $validator
-            ->boolean('email_verified')
-            ->notEmptyString('email_verified');
+            ->boolean('email_verified');
 
         $validator
             ->dateTime('last_login_at')

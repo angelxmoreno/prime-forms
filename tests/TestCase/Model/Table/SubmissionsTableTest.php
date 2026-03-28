@@ -60,7 +60,28 @@ class SubmissionsTableTest extends TestCase
      */
     public function testValidationDefault(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $missingFormId = $this->Submissions->newEntity([
+            'payload' => '{"message":"Missing form id"}',
+        ]);
+        $this->assertNotEmpty($missingFormId->getErrors()['form_id'] ?? []);
+
+        $missingPayload = $this->Submissions->newEntity([
+            'form_id' => 1,
+        ]);
+        $this->assertNotEmpty($missingPayload->getErrors()['payload'] ?? []);
+
+        $invalidFormId = $this->Submissions->newEntity([
+            'form_id' => '',
+            'payload' => '{"message":"Invalid form id"}',
+        ]);
+        $this->assertNotEmpty($invalidFormId->getErrors()['form_id'] ?? []);
+
+        $valid = $this->Submissions->newEntity([
+            'form_id' => 1,
+            'payload' => '{"message":"Looks good"}',
+            'reviewed' => false,
+        ]);
+        $this->assertEmpty($valid->getErrors());
     }
 
     /**
@@ -71,6 +92,18 @@ class SubmissionsTableTest extends TestCase
      */
     public function testBuildRules(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $invalidSubmission = $this->Submissions->newEntity([
+            'form_id' => 9999,
+            'payload' => '{"message":"Unknown form"}',
+        ]);
+        $this->assertFalse($this->Submissions->save($invalidSubmission));
+        $this->assertNotEmpty($invalidSubmission->getErrors()['form_id'] ?? []);
+
+        $validSubmission = $this->Submissions->newEntity([
+            'form_id' => 1,
+            'payload' => '{"message":"Valid form reference"}',
+            'reviewed' => false,
+        ]);
+        $this->assertNotFalse($this->Submissions->save($validSubmission));
     }
 }

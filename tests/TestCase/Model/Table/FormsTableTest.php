@@ -60,7 +60,28 @@ class FormsTableTest extends TestCase
      */
     public function testValidationDefault(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $valid = $this->Forms->newEntity([
+            'slug' => 'feedback-form',
+            'title' => 'Feedback Form',
+            'description' => 'Collects product feedback.',
+            'form_class' => 'FeedbackForm',
+            'schema_path' => 'project-docs/forms/feedback-form.md',
+            'is_active' => false,
+        ]);
+        $this->assertEmpty($valid->getErrors());
+
+        $invalid = $this->Forms->newEntity([
+            'slug' => '',
+            'title' => '',
+            'form_class' => '',
+            'schema_path' => '',
+        ]);
+        $errors = $invalid->getErrors();
+
+        $this->assertArrayHasKey('slug', $errors);
+        $this->assertArrayHasKey('title', $errors);
+        $this->assertArrayHasKey('form_class', $errors);
+        $this->assertArrayHasKey('schema_path', $errors);
     }
 
     /**
@@ -71,6 +92,26 @@ class FormsTableTest extends TestCase
      */
     public function testBuildRules(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $duplicateSlug = $this->Forms->newEmptyEntity();
+        $duplicateSlug = $this->Forms->patchEntity($duplicateSlug, [
+            'slug' => 'contact-form',
+            'title' => 'Another Contact Form',
+            'form_class' => 'AnotherContactForm',
+            'schema_path' => 'project-docs/forms/another-contact-form.md',
+            'is_active' => true,
+        ]);
+        $this->assertFalse($this->Forms->save($duplicateSlug));
+        $this->assertNotEmpty($duplicateSlug->getErrors()['slug'] ?? []);
+
+        $duplicateFormClass = $this->Forms->newEmptyEntity();
+        $duplicateFormClass = $this->Forms->patchEntity($duplicateFormClass, [
+            'slug' => 'newsletter-form',
+            'title' => 'Newsletter Form',
+            'form_class' => 'ContactForm',
+            'schema_path' => 'project-docs/forms/newsletter-form.md',
+            'is_active' => true,
+        ]);
+        $this->assertFalse($this->Forms->save($duplicateFormClass));
+        $this->assertNotEmpty($duplicateFormClass->getErrors()['form_class'] ?? []);
     }
 }

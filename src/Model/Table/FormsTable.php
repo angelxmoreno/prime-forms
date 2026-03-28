@@ -88,8 +88,7 @@ class FormsTable extends Table
             ->notEmptyString('schema_path');
 
         $validator
-            ->boolean('is_active')
-            ->notEmptyString('is_active');
+            ->boolean('is_active');
 
         return $validator;
     }

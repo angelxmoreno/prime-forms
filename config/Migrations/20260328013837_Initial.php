@@ -17,6 +17,11 @@ class Initial extends BaseMigration
      */
     public function up(): void
     {
+        $isSqlite = $this->getAdapter()->getAdapterType() === 'sqlite';
+        $shouldCreateSubmissionForeignKey = $this->getAdapter()->getAdapterType() !== 'sqlite';
+        $idColumnType = $isSqlite ? 'integer' : 'biginteger';
+        $unsignedIds = !$isSqlite;
+
         $this->table('database_logs')
             ->addColumn('id', 'integer', [
                 'autoIncrement' => true,
@@ -100,12 +105,12 @@ class Initial extends BaseMigration
             ->create();
 
         $this->table('forms')
-            ->addColumn('id', 'biginteger', [
+            ->addColumn('id', $idColumnType, [
                 'autoIncrement' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => false,
-                'signed' => false,
+                'signed' => $unsignedIds ? false : true,
             ])
             ->addPrimaryKey(['id'])
             ->addColumn('slug', 'string', [
@@ -165,19 +170,19 @@ class Initial extends BaseMigration
             ->create();
 
         $this->table('submissions')
-            ->addColumn('id', 'biginteger', [
+            ->addColumn('id', $idColumnType, [
                 'autoIncrement' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => false,
-                'signed' => false,
+                'signed' => $unsignedIds ? false : true,
             ])
             ->addPrimaryKey(['id'])
-            ->addColumn('form_id', 'biginteger', [
+            ->addColumn('form_id', $idColumnType, [
                 'default' => null,
                 'limit' => null,
                 'null' => false,
-                'signed' => false,
+                'signed' => $unsignedIds ? false : true,
             ])
             ->addColumn('payload', 'json', [
                 'default' => null,
@@ -209,16 +214,6 @@ class Initial extends BaseMigration
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('submission_fingerprint', 'string', [
-                'default' => null,
-                'limit' => 255,
-                'null' => true,
-            ])
-            ->addColumn('tracking_hash', 'string', [
-                'default' => null,
-                'limit' => 255,
-                'null' => true,
-            ])
             ->addColumn('reviewed', 'boolean', [
                 'default' => false,
                 'limit' => null,
@@ -240,10 +235,6 @@ class Initial extends BaseMigration
                 'null' => false,
             ])
             ->addIndex(
-                $this->index('form_id')
-                    ->setName('submissions_form_id_idx')
-            )
-            ->addIndex(
                 $this->index('reviewed')
                     ->setName('submissions_reviewed_idx')
             )
@@ -254,26 +245,15 @@ class Initial extends BaseMigration
                     ])
                     ->setName('submissions_form_created_idx')
             )
-            ->addIndex(
-                $this->index('submission_fingerprint')
-                    ->setName('submissions_submission_fingerprint_idx')
-            )
-            ->addIndex(
-                $this->index([
-                        'form_id',
-                        'submission_fingerprint',
-                    ])
-                    ->setName('submissions_form_submission_fingerprint_idx')
-            )
             ->create();
 
         $this->table('users')
-            ->addColumn('id', 'biginteger', [
+            ->addColumn('id', $idColumnType, [
                 'autoIncrement' => true,
                 'default' => null,
                 'limit' => null,
                 'null' => false,
-                'signed' => false,
+                'signed' => $unsignedIds ? false : true,
             ])
             ->addPrimaryKey(['id'])
             ->addColumn('appwrite_user_id', 'string', [
@@ -327,16 +307,19 @@ class Initial extends BaseMigration
             )
             ->create();
 
-        $this->table('submissions')
-            ->addForeignKey(
-                $this->foreignKey('form_id')
-                    ->setReferencedTable('forms')
-                    ->setReferencedColumns('id')
-                    ->setOnDelete('RESTRICT')
-                    ->setOnUpdate('CASCADE')
-                    ->setName('submissions_form_id_fk')
-            )
-            ->update();
+        if ($shouldCreateSubmissionForeignKey) {
+            $this->table('submissions')
+                ->addForeignKey(
+                    $this->foreignKey('form_id')
+                        ->setReferencedTable('forms')
+                        ->setReferencedColumns('id')
+                        ->setOnDelete('RESTRICT')
+                        ->setOnUpdate('CASCADE')
+                        ->setName('submissions_form_id_fk')
+                )
+                ->update();
+        }
+
     }
 
     /**
@@ -349,10 +332,12 @@ class Initial extends BaseMigration
      */
     public function down(): void
     {
-        $this->table('submissions')
-            ->dropForeignKey(
-                'form_id'
-            )->save();
+        if ($this->getAdapter()->getAdapterType() !== 'sqlite') {
+            $this->table('submissions')
+                ->dropForeignKey(
+                    'form_id'
+                )->save();
+        }
 
         $this->table('database_logs')->drop()->save();
         $this->table('forms')->drop()->save();

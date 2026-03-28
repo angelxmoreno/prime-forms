@@ -43,7 +43,6 @@ CREATE TABLE `submissions` (
     `created` DATETIME NOT NULL,
     `modified` DATETIME NOT NULL,
     PRIMARY KEY (`id`),
-    KEY `submissions_form_id_idx` (`form_id`),
     KEY `submissions_reviewed_idx` (`reviewed`),
     KEY `submissions_form_created_idx` (`form_id`, `created`),
     CONSTRAINT `submissions_form_id_fk`

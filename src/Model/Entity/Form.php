@@ -38,8 +38,5 @@ class Form extends Entity
         'form_class' => true,
         'schema_path' => true,
         'is_active' => true,
-        'created' => true,
-        'modified' => true,
-        'submissions' => true,
     ];
 }
