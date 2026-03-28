@@ -80,7 +80,8 @@ class UsersTableTest extends TestCase
             'display_name' => 'Long Email User',
             'email_verified' => false,
         ]);
-        $this->assertNotEmpty($tooLongEmail->getErrors()['email'] ?? []);
+        $this->assertArrayHasKey('email', $tooLongEmail->getErrors());
+        $this->assertArrayHasKey('maxLength', $tooLongEmail->getErrors()['email']);
     }
 
     /**
