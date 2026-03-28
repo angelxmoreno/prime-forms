@@ -34,9 +34,6 @@ Status:
 - migration for form assignments
 - migration or schema design for local roles and authorization assignments
 
-Decision needed before submission runtime implementation, not before these migrations:
-- define how `submission_fingerprint` and `tracking_hash` are generated, rotated, and retained
-
 ### Chunk 5: Auth Package Contracts And Scaffolds
 - `Appwrite` plugin scaffold
 - `AppwriteUsers` plugin scaffold
