@@ -1,0 +1,51 @@
+src/Model/Table/SubmissionsTable.php
+  b4c5f4228588f1e5 1-114
+tests/Fixture/UsersFixture.php
+  b4c5f4228588f1e5 1-34
+tests/TestCase/Model/Table/UsersTableTest.php
+  b4c5f4228588f1e5 1-75
+src/Model/Entity/User.php
+  b4c5f4228588f1e5 1-40
+tests/Fixture/FormsFixture.php
+  b4c5f4228588f1e5 1-28,31-35
+tests/Fixture/SubmissionsFixture.php
+  b4c5f4228588f1e5 1-31,34-38
+src/Model/Entity/Submission.php
+  b4c5f4228588f1e5 1-51
+config/Migrations/20260328013837_Initial.php
+  b4c5f4228588f1e5 1-362
+tests/TestCase/Model/Table/FormsTableTest.php
+  b4c5f4228588f1e5 1-76
+config/schema/user-form-submissions.sql
+  b4c5f4228588f1e5 1-53
+src/Model/Entity/Form.php
+  b4c5f4228588f1e5 1-45
+src/Model/Table/FormsTable.php
+  b4c5f4228588f1e5 1-111
+src/Model/Table/UsersTable.php
+  b4c5f4228588f1e5 1-99
+tests/TestCase/Model/Table/SubmissionsTableTest.php
+  b4c5f4228588f1e5 1-76
+.env.sample
+  b4c5f4228588f1e5 28-33
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.20",
+  "base_commit_sha": "52fe1be6c86de81d4a9485cd14a3fe4794709cce",
+  "prompts": {
+    "b4c5f4228588f1e5": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d2af9-0efe-7610-9346-112fb5e1d3d7",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Angel S. Moreno <angelxmoreno@gmail.com>",
+      "messages": [],
+      "total_additions": 1243,
+      "total_deletions": 4,
+      "accepted_lines": 1211,
+      "overriden_lines": 4
+    }
+  }
+}
