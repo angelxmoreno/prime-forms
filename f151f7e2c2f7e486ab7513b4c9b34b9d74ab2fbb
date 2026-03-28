@@ -1,0 +1,25 @@
+config/app.php
+  b4c5f4228588f1e5 297,301,336
+.env.sample
+  b4c5f4228588f1e5 1-27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.20",
+  "base_commit_sha": "f151f7e2c2f7e486ab7513b4c9b34b9d74ab2fbb",
+  "prompts": {
+    "b4c5f4228588f1e5": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d2af9-0efe-7610-9346-112fb5e1d3d7",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Angel S. Moreno <angelxmoreno@gmail.com>",
+      "messages": [],
+      "total_additions": 47,
+      "total_deletions": 24,
+      "accepted_lines": 30,
+      "overriden_lines": 0
+    }
+  }
+}
