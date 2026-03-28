@@ -1,0 +1,23 @@
+config/Migrations/20260328013837_Initial.php
+  b4c5f4228588f1e5 91-92,95-96,99-100,154-158,161-165,168-169,239-240,243-244,293-297,300-304,307-308,315-322
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.20",
+  "base_commit_sha": "3b75f2d6c5eab0ab475e8f27b4cf96ac66c8bf93",
+  "prompts": {
+    "b4c5f4228588f1e5": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d2af9-0efe-7610-9346-112fb5e1d3d7",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Angel S. Moreno <angelxmoreno@gmail.com>",
+      "messages": [],
+      "total_additions": 42,
+      "total_deletions": 38,
+      "accepted_lines": 54,
+      "overriden_lines": 0
+    }
+  }
+}
