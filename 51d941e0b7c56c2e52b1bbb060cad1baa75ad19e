@@ -1,0 +1,43 @@
+src/Model/Table/SubmissionsTable.php
+  b4c5f4228588f1e5 62,92
+src/Model/Table/UsersTable.php
+  b4c5f4228588f1e5 64,76
+tests/Fixture/FormsFixture.php
+  b4c5f4228588f1e5 23-27
+tests/Fixture/UsersFixture.php
+  b4c5f4228588f1e5 23-25
+tests/Fixture/SubmissionsFixture.php
+  b4c5f4228588f1e5 24-31
+config/Migrations/20260328013837_Initial.php
+  b4c5f4228588f1e5 20-24,108,113,173,178,181,185,251,256,310-322,335-340
+src/Model/Entity/User.php
+  b4c5f4228588f1e5 36-44
+src/Model/Table/FormsTable.php
+  b4c5f4228588f1e5 91
+tests/TestCase/Model/Table/FormsTableTest.php
+  b4c5f4228588f1e5 63-84,95-115
+tests/TestCase/Model/Table/SubmissionsTableTest.php
+  b4c5f4228588f1e5 63-84,95-107
+tests/TestCase/Model/Table/UsersTableTest.php
+  b4c5f4228588f1e5 62-83,94-110
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.20",
+  "base_commit_sha": "51d941e0b7c56c2e52b1bbb060cad1baa75ad19e",
+  "prompts": {
+    "b4c5f4228588f1e5": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d2af9-0efe-7610-9346-112fb5e1d3d7",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Angel S. Moreno <angelxmoreno@gmail.com>",
+      "messages": [],
+      "total_additions": 869,
+      "total_deletions": 188,
+      "accepted_lines": 807,
+      "overriden_lines": 0
+    }
+  }
+}
