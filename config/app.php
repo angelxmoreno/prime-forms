@@ -226,16 +226,10 @@ return [
              * The keys host, port, timeout, username, password, client and tls
              * are used in SMTP transports
              */
-            'host' => 'localhost',
-            'port' => 25,
             'timeout' => 30,
             /*
              * It is recommended to set these options through your environment or app_local.php
              */
-            //'username' => null,
-            //'password' => null,
-            'client' => null,
-            'tls' => false,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
         ],
     ],
@@ -300,10 +294,11 @@ return [
              * If your MySQL server is configured with `skip-character-set-client-handshake`
              * then you MUST use the `flags` config to set your charset encoding.
              * For e.g. `'flags' => [\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4']`
-             */
+            */
             'flags' => [],
             'cacheMetadata' => true,
             'log' => false,
+            'url' => env('DATABASE_URL', null),
 
             /*
              * Set identifier quoting to true if you are using reserved words or
@@ -338,6 +333,7 @@ return [
             'cacheMetadata' => true,
             'quoteIdentifiers' => false,
             'log' => false,
+            'url' => env('DATABASE_TEST_URL', 'sqlite://127.0.0.1/tmp/tests.sqlite'),
             //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
         ],
     ],
