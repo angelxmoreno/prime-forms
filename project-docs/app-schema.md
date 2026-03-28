@@ -190,8 +190,6 @@ user_agent            TEXT NULL
 referrer_url          TEXT NULL
 accept_language       VARCHAR(255) NULL
 source_url            TEXT NULL
-submission_fingerprint VARCHAR(255) NULL
-tracking_hash         VARCHAR(255) NULL
 reviewed              TINYINT(1) NOT NULL DEFAULT 0
 review_notes          TEXT NULL
 created               DATETIME NOT NULL
@@ -203,8 +201,6 @@ Suggested constraints and indexes:
 - index: `form_id`
 - index: `reviewed`
 - composite index: `(form_id, created)`
-- index: `submission_fingerprint`
-- composite index: `(form_id, submission_fingerprint)`
 
 Notes:
 - `payload` stores the submitted form data as JSON
@@ -212,10 +208,9 @@ Notes:
 - `referrer_url`, `accept_language`, and `source_url` should be captured in Phase 1
 - no per-form entity or table is required for standard forms
 - do not add `submitted_by_user_id` in Phase 1; if a form needs contact identity, collect it as part of the submitted payload and normalize later only if needed
-- `submission_fingerprint` and `tracking_hash` can be used for multi-submission detection, but their generation rules should be documented carefully before implementation
 - if a specific form later needs normalized storage, add it separately without changing the shared default
 
-### Submission Context And Detection Fields
+### Submission Context Fields
 
 These fields are part of the planned schema direction:
 
@@ -223,17 +218,12 @@ These fields are part of the planned schema direction:
 referrer_url          TEXT NULL
 accept_language       VARCHAR(255) NULL
 source_url            TEXT NULL
-submission_fingerprint VARCHAR(255) NULL
-tracking_hash         VARCHAR(255) NULL
 ```
 
 Notes:
 - `referrer_url` can help explain where a submission originated, but it is often missing or unreliable
 - `accept_language` can be useful for analytics or support context
 - `source_url` is only useful if the app may host or embed the same form in multiple places
-- `submission_fingerprint` should be treated as a derived detection value, not as a user-facing identifier
-- `tracking_hash` can support duplicate or abuse detection when generated consistently
-- any device-fingerprint strategy should be documented with privacy and retention rules before implementation
 
 ## Deferred For Phase 2
 
@@ -271,4 +261,4 @@ That should be a deliberate Phase 2 or package-evolution step, not a default Pha
 
 ## Open Schema Questions
 
-- How should `submission_fingerprint` and `tracking_hash` be generated, rotated, and retained?
+- None right now that block the initial `users`, `forms`, and `submissions` schema.
