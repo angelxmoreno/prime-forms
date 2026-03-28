@@ -110,7 +110,7 @@ class Initial extends BaseMigration
                 'default' => null,
                 'limit' => null,
                 'null' => false,
-                'signed' => $unsignedIds ? false : true,
+                'signed' => !$unsignedIds,
             ])
             ->addPrimaryKey(['id'])
             ->addColumn('slug', 'string', [
@@ -175,14 +175,14 @@ class Initial extends BaseMigration
                 'default' => null,
                 'limit' => null,
                 'null' => false,
-                'signed' => $unsignedIds ? false : true,
+                'signed' => !$unsignedIds,
             ])
             ->addPrimaryKey(['id'])
             ->addColumn('form_id', $idColumnType, [
                 'default' => null,
                 'limit' => null,
                 'null' => false,
-                'signed' => $unsignedIds ? false : true,
+                'signed' => !$unsignedIds,
             ])
             ->addColumn('payload', 'json', [
                 'default' => null,
@@ -253,7 +253,7 @@ class Initial extends BaseMigration
                 'default' => null,
                 'limit' => null,
                 'null' => false,
-                'signed' => $unsignedIds ? false : true,
+                'signed' => !$unsignedIds,
             ])
             ->addPrimaryKey(['id'])
             ->addColumn('appwrite_user_id', 'string', [

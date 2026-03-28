@@ -92,25 +92,23 @@ class FormsTableTest extends TestCase
      */
     public function testBuildRules(): void
     {
-        $duplicateSlug = $this->Forms->newEmptyEntity();
-        $duplicateSlug = $this->Forms->patchEntity($duplicateSlug, [
+        $duplicateSlug = $this->Forms->newEntity([
             'slug' => 'contact-form',
             'title' => 'Another Contact Form',
             'form_class' => 'AnotherContactForm',
             'schema_path' => 'project-docs/forms/another-contact-form.md',
             'is_active' => true,
-        ]);
+        ], ['validate' => false]);
         $this->assertFalse($this->Forms->save($duplicateSlug));
         $this->assertNotEmpty($duplicateSlug->getErrors()['slug'] ?? []);
 
-        $duplicateFormClass = $this->Forms->newEmptyEntity();
-        $duplicateFormClass = $this->Forms->patchEntity($duplicateFormClass, [
+        $duplicateFormClass = $this->Forms->newEntity([
             'slug' => 'newsletter-form',
             'title' => 'Newsletter Form',
             'form_class' => 'ContactForm',
             'schema_path' => 'project-docs/forms/newsletter-form.md',
             'is_active' => true,
-        ]);
+        ], ['validate' => false]);
         $this->assertFalse($this->Forms->save($duplicateFormClass));
         $this->assertNotEmpty($duplicateFormClass->getErrors()['form_class'] ?? []);
     }

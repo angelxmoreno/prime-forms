@@ -62,7 +62,11 @@ class FormsTable extends Table
             ->maxLength('slug', 191)
             ->requirePresence('slug', 'create')
             ->notEmptyString('slug')
-            ->add('slug', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->add('slug', 'unique', [
+                'rule' => 'validateUnique',
+                'provider' => 'table',
+                'message' => __('A form with this slug already exists.'),
+            ]);
 
         $validator
             ->scalar('title')

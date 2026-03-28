@@ -96,7 +96,7 @@ class UsersTableTest extends TestCase
             'email' => 'unique@example.com',
             'display_name' => 'Duplicate Appwrite User',
             'email_verified' => false,
-        ]);
+        ], ['validate' => false]);
         $this->assertFalse($this->Users->save($duplicateAppwriteId));
         $this->assertNotEmpty($duplicateAppwriteId->getErrors()['appwrite_user_id'] ?? []);
 
@@ -105,7 +105,7 @@ class UsersTableTest extends TestCase
             'email' => 'test.user+1@example.com',
             'display_name' => 'Duplicate Email User',
             'email_verified' => false,
-        ]);
+        ], ['validate' => false]);
         $this->assertFalse($this->Users->save($duplicateEmail));
         $this->assertNotEmpty($duplicateEmail->getErrors()['email'] ?? []);
     }
