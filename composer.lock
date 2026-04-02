@@ -299,16 +299,16 @@
         },
         {
             "name": "composer/ca-bundle",
-            "version": "1.5.10",
+            "version": "1.5.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "961a5e4056dd2e4a2eedcac7576075947c28bf63"
+                "reference": "68ff39175e8e94a4bb1d259407ce51a6a60f09e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/961a5e4056dd2e4a2eedcac7576075947c28bf63",
-                "reference": "961a5e4056dd2e4a2eedcac7576075947c28bf63",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/68ff39175e8e94a4bb1d259407ce51a6a60f09e6",
+                "reference": "68ff39175e8e94a4bb1d259407ce51a6a60f09e6",
                 "shasum": ""
             },
             "require": {
@@ -355,7 +355,7 @@
             "support": {
                 "irc": "irc://irc.freenode.org/composer",
                 "issues": "https://github.com/composer/ca-bundle/issues",
-                "source": "https://github.com/composer/ca-bundle/tree/1.5.10"
+                "source": "https://github.com/composer/ca-bundle/tree/1.5.11"
             },
             "funding": [
                 {
@@ -367,20 +367,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-08T15:06:51+00:00"
+            "time": "2026-03-30T09:16:10+00:00"
         },
         {
             "name": "dereuromark/cakephp-databaselog",
-            "version": "4.4.0",
+            "version": "4.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/CakePHP-DatabaseLog.git",
-                "reference": "9da2f3aba7fba92b233e518d06123e265a7b7a22"
+                "reference": "db5e70d32860ca98e2a12110ad090b7f39f65332"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/9da2f3aba7fba92b233e518d06123e265a7b7a22",
-                "reference": "9da2f3aba7fba92b233e518d06123e265a7b7a22",
+                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/db5e70d32860ca98e2a12110ad090b7f39f65332",
+                "reference": "db5e70d32860ca98e2a12110ad090b7f39f65332",
                 "shasum": ""
             },
             "require": {
@@ -438,13 +438,14 @@
                 "logging",
                 "logs",
                 "monitoring",
-                "plugin"
+                "plugin",
+                "standalone-ui"
             ],
             "support": {
                 "issues": "https://github.com/dereuromark/CakePHP-DatabaseLog/issues",
                 "source": "https://github.com/dereuromark/CakePHP-DatabaseLog/"
             },
-            "time": "2026-03-18T22:21:42+00:00"
+            "time": "2026-03-28T14:11:43+00:00"
         },
         {
             "name": "josegonzalez/dotenv",
